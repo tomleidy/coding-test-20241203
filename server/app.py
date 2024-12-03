@@ -6,7 +6,7 @@ By: Tom Leidy + Claude 3.5 Sonnet
 
 from datetime import datetime, timezone
 import re
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import bleach
@@ -61,8 +61,8 @@ class Email(db.Model):
 
 
 @app.route('/')
-def home():
-    return "Contacts API is running"
+def serve_app():
+    return send_from_directory('static', 'index.html')
 
 
 with app.app_context():
@@ -191,4 +191,4 @@ def after_request(response):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5001)
