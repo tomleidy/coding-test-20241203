@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <script src="/js/index.js" defer></script>
     <title>Contacts</title>
     <link href="/css/tailwind.min.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,8 @@
 <body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
     <div class="flex h-screen">
         <!-- Left Panel -->
-        <div class="w-80 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+        <div
+            class="w-1/2 sm:w-2/5 lg:w-1/3 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col">
             <div class="p-4 border-b border-gray-200 dark:border-gray-700">
                 <div class="flex items-center justify-between">
                     <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Contacts</h1>
@@ -45,7 +46,7 @@
             </div>
             <div class="p-4 border-t border-gray-200 dark:border-gray-700">
                 <div class="relative">
-                    <input type="text" id="searchInput" placeholder="Search contacts..."
+                    <input type="text" id="searchInput" placeholder="Search..."
                         class="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:text-white placeholder-gray-500 dark:placeholder-gray-400">
                     <svg class="w-5 h-5 absolute right-3 top-2.5 text-gray-400 dark:text-gray-500" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
@@ -54,7 +55,6 @@
                     </svg>
                 </div>
             </div>
-
         </div>
 
         <!-- Right Panel -->
@@ -62,7 +62,7 @@
             <div id="contactForm" class="p-6 max-w-2xl mx-auto hidden">
                 <div class="space-y-6">
                     <!-- Name Fields -->
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">First
                                 Name</label>
@@ -79,8 +79,7 @@
 
                     <!-- Email Section -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email
-                            Addresses</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
                         <div id="emailList" class="space-y-2">
                             <!-- Email items will be dynamically inserted here -->
                         </div>
@@ -95,22 +94,21 @@
                                 class="text-sm text-blue-500 group-hover:text-blue-600 dark:text-blue-400 dark:group-hover:text-blue-300">Add
                                 email</span>
                         </button>
-
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="flex justify-between pt-4">
+                    <div class="flex flex-col sm:flex-row justify-between gap-4 pt-4">
                         <button id="deleteBtn"
-                            class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">
+                            class="w-full sm:w-auto px-6 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">
                             Delete
                         </button>
-                        <div class="space-x-2">
+                        <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                             <button id="cancelBtn"
-                                class="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                                class="w-full sm:w-auto px-6 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
                                 Cancel
                             </button>
                             <button id="saveBtn"
-                                class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">
+                                class="w-full sm:w-auto px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">
                                 Save
                             </button>
                         </div>
@@ -143,13 +141,11 @@
     </template>
 
     <template id="emailInputTemplate">
-        <div class="email-input-group w-[calc(50%-0.5rem)]"> <!-- Same width as name fields -->
+        <div class="email-input-group w-full sm:w-1/2">
             <input type="email"
                 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400">
         </div>
     </template>
-
-
 </body>
 
 </html>
