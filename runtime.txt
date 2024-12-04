@@ -1,0 +1,5 @@
+# Procfile
+web: gunicorn --chdir server app:app
+
+# runtime.txt
+python-3.11.7
