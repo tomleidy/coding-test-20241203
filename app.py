@@ -34,7 +34,12 @@ def is_valid_email(email):
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*",
      "methods": ["GET", "POST", "PUT", "DELETE"], "allow_headers": ["Content-Type"]}})
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contacts.db'
+if app.config['SQLALCHEMY_DATABASE_URI'].startswith('postgres://'):
+    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].replace(
+        'postgres://', 'postgresql://', 1)
+
+
 db = SQLAlchemy(app)
 
 
