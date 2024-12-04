@@ -5,6 +5,7 @@ let isAddingEmail = false;
 let isNewContact = false;
 let currentEmailList = [];
 let originalContact = null;
+let searchQuery = '';
 
 
 // DOM Elements
@@ -18,6 +19,7 @@ const saveBtn = document.getElementById('saveBtn');
 const deleteBtn = document.getElementById('deleteBtn');
 const cancelBtn = document.getElementById('cancelBtn');
 const addContactBtn = document.getElementById('addContactBtn');
+const searchInput = document.getElementById('searchInput');
 
 // API Functions
 async function fetchContacts() {
@@ -84,7 +86,8 @@ async function deleteContact(id) {
 function renderContactsList() {
     contactsList.innerHTML = '';
 
-    const sortedContacts = [...contacts].sort((a, b) =>
+    const filteredContacts = filterContacts(contacts, searchQuery);
+    const sortedContacts = [...filteredContacts].sort((a, b) =>
         a.lastName.localeCompare(b.lastName)
     );
 
@@ -324,6 +327,12 @@ cancelBtn.addEventListener('click', (e) => {
 
 firstNameInput.addEventListener('input', checkForChanges);
 lastNameInput.addEventListener('input', checkForChanges);
+
+searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    renderContactsList();
+});
+
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
