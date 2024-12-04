@@ -5,6 +5,7 @@ By: Tom Leidy + Claude 3.5 Sonnet
 """
 
 from datetime import datetime, timezone
+import os
 import re
 from flask import Flask, request, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
@@ -200,5 +201,6 @@ def after_request(response):
     return response
 
 
+port = int(os.environ.get('PORT', 5001))
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=port)
