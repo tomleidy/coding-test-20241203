@@ -114,9 +114,11 @@ function renderEmailList() {
         const emailItem = template.content.cloneNode(true);
 
         const emailText = emailItem.querySelector('.email-text');
+        emailText.id = `email-text-${index}`;
         emailText.textContent = emailObj.email;
 
         const deleteBtn = emailItem.querySelector('.email-delete');
+        deleteBtn.id = `email-delete-${index}`;
         deleteBtn.addEventListener('click', () => {
             currentEmailList.splice(index, 1);
             renderEmailList();
@@ -136,13 +138,14 @@ function addNewEmailInput() {
     const template = document.getElementById('emailInputTemplate');
     const emailInput = template.content.cloneNode(true);
     const input = emailInput.querySelector('input');
+    input.id = `email-input-${Date.now()}`;
 
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
             const email = input.value.trim();
             if (email && isValidEmail(email)) {
-                currentEmailList.push({ email });
+                currentEmailList.push({ id: Date.now(), email });
                 renderEmailList();
                 if (emailInput.parentElement) {
                     emailInput.parentElement.remove();
@@ -311,7 +314,7 @@ saveBtn.addEventListener('click', async (e) => {
     if (emailInput) {
         const email = emailInput.value.trim();
         if (email && isValidEmail(email)) {
-            currentEmailList.push({ email });
+            currentEmailList.push({ id: Date.now(), email });
         }
     }
 
