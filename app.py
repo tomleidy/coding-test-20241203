@@ -38,6 +38,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
 db = SQLAlchemy(app)
 
 
+@app.before_request
+def before_request():
+    try:
+        db.create_all()
+    except OperationalError:
+        # Table already exists? Happy day
+        pass
+
+
 class TimeNow:
     def __call__(self):
         return datetime.now(timezone.utc)
