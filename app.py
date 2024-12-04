@@ -34,7 +34,7 @@ def is_valid_email(email):
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*",
      "methods": ["GET", "POST", "PUT", "DELETE"], "allow_headers": ["Content-Type"]}})
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contacts.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
 db = SQLAlchemy(app)
 
 
