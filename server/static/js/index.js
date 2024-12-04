@@ -258,6 +258,13 @@ function getFormData() {
 }
 
 // Search functionality
+/*
+* This should be modified in case of larger contact lists.
+* We could pause to update ~300ms or ~1000ms after last keystroke.
+* I'm not sure how React keeps track of incremental updates
+*  but incremental updates would work better than updating the full DOM
+*  with every keystroke.
+*/
 function filterContacts(contacts, query) {
     if (!query) return contacts;
 
