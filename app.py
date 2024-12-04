@@ -11,7 +11,7 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import bleach
-
+from sqlalchemy.exc import OperationalError
 
 NAME_FIELD_SIZE = 50
 EMAIL_FIELD_SIZE = 120
@@ -76,8 +76,12 @@ def serve_css(filename):
     return send_from_directory('static/css', filename)
 
 
-with app.app_context():
-    db.create_all()
+def init_db():
+    with app.app_context():
+        try:
+            db.create_all()
+        except OperationalError as e:
+            print(f"Database already initialized: {e}")
 
 
 @app.route('/api/contacts', methods=['GET'])
